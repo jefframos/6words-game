@@ -83687,7 +83687,7 @@ var WordMakerSystem = function () {
                         this.win();
                     }
                     //this.arrowRight()
-                    //this.arrowDown();
+                    this.arrowDown();
                     //COOKIE_MANAGER.saveDailyStats(this.loadStats, this.isDaily)
                 } else {
                     testRow.wordFound = '';
