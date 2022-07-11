@@ -82921,6 +82921,20 @@ var WordMakerSystem = function () {
 
         this.finishButton.onClick.add(this.win.bind(this));
 
+        this.eraseAllButton = new _NextRandom2.default(120, 60, 0xf56363);
+        this.bottomContainer.addChild(this.eraseAllButton);
+        this.eraseAllButton.updateText('reset');
+        this.eraseAllButton.sin = 0;
+        this.actionButtons.updateHorizontalList();
+
+        this.eraseAllButton.pivot.x = this.eraseAllButton.width / 2;
+        this.eraseAllButton.pivot.y = this.eraseAllButton.height / 2;
+
+        this.eraseAllButton.x = this.eraseAllButton.width / 2;
+        this.eraseAllButton.y = this.bottomWrapper.height - this.eraseAllButton.height / 2 - 24;
+
+        this.eraseAllButton.onClick.add(this.resetAllDaily.bind(this));
+
         this.bottomLetterList = new _UIList2.default();
         this.bottomLetterList.w = this.bottomWrapper.width * 0.8;
         this.bottomLetterList.h = 50;
@@ -83899,6 +83913,11 @@ var WordMakerSystem = function () {
 
                 this.finishButton.scale.set(Math.cos(this.finishButton.sin) * 0.08 + 0.92, Math.cos(this.finishButton.sin) * 0.08 + 0.92);
             }
+            if (this.eraseAllButton.visible) {
+                this.eraseAllButton.sin += delta * 7;
+
+                this.eraseAllButton.scale.set(Math.sin(this.eraseAllButton.sin) * 0.08 + 0.92, Math.sin(this.eraseAllButton.sin) * 0.08 + 0.92);
+            }
             // var localTime = d.getTime();
 
             // var localOffset = d.getTimezoneOffset() * 60000;
@@ -83956,6 +83975,7 @@ var WordMakerSystem = function () {
             this.actionButtons.y = this.bottomLetterList.y + this.bottomLetterList.height + 20;
 
             this.finishButton.visible = this.isWinState;
+            this.eraseAllButton.visible = this.isWinState;
 
             this.shareButton.x = 60 / 2 + 20;
             this.shareButton.y = this.markerList.y + 30;
@@ -86716,7 +86736,7 @@ var vertex="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nun
 /* 396 */
 /***/ (function(module, exports) {
 
-module.exports = {"default":["image/pattern/pattern.json","image/particles/particles.json","image/ui/ui.json"]}
+module.exports = {"default":["image/particles/particles.json","image/pattern/pattern.json","image/ui/ui.json"]}
 
 /***/ })
 /******/ ]);
