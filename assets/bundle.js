@@ -83702,6 +83702,9 @@ var WordMakerSystem = function () {
                     //this.arrowRight()
                 }
             }
+            //console.log(testRow)
+            //this.testAllRows()
+            this.updateCurrentGameState();
             COOKIE_MANAGER.saveDailyStats(this.loadStats, this.isDaily);
         }
     }, {
@@ -83778,7 +83781,15 @@ var WordMakerSystem = function () {
                 this.onParticles.dispatch(data.icon.getGlobalPosition(), customData, 1);
             }
             var slot = this.getCurrentSelectedSlot();
+
+            var shouldUpdate = true;
+            if (slot.currentLetter && slot.currentLetter == data.letter.key) {
+                shouldUpdate = false;
+            }
             slot.addLetter(data.letter.key, this.letters[data.letter.key.toUpperCase()]);
+            if (shouldUpdate) {
+                this.deleteOneRowLetter(this.gameplayData.currentVerticalPosition);
+            }
 
             if (this.isDaily) {
                 var wordSave = this.loadStats.letters[this.gameplayData.currentVerticalPosition];
@@ -83810,7 +83821,6 @@ var WordMakerSystem = function () {
             var won = true;
             for (var index = 0; index < this.gameplayData.lists.length; index++) {
                 var element = this.gameplayData.lists[index];
-                console.log(element);
                 if (!element.wordPoints || !element.wordFound) {
                     won = false;
                 }
@@ -86706,7 +86716,7 @@ var vertex="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nun
 /* 396 */
 /***/ (function(module, exports) {
 
-module.exports = {"default":["image/particles/particles.json","image/pattern/pattern.json","image/ui/ui.json"]}
+module.exports = {"default":["image/pattern/pattern.json","image/particles/particles.json","image/ui/ui.json"]}
 
 /***/ })
 /******/ ]);
