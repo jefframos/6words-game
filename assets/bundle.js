@@ -83211,7 +83211,7 @@ var WordMakerSystem = function () {
             textToShare += 'Total ' + this.currentPoints + '\n';
 
             var data = {
-                url: 'www.6words.co.uk',
+                url: 'http://www.6words.co.uk',
                 text: textToShare,
                 title: this.currentPoints + ' points!'
             };
@@ -86751,7 +86751,7 @@ var vertex="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nun
 /* 396 */
 /***/ (function(module, exports) {
 
-module.exports = {"default":["image/particles/particles.json","image/pattern/pattern.json","image/ui/ui.json"]}
+module.exports = {"default":["image/pattern/pattern.json","image/particles/particles.json","image/ui/ui.json"]}
 
 /***/ })
 /******/ ]);
