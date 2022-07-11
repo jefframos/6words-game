@@ -82980,24 +82980,57 @@ var WordMakerSystem = function () {
         key: 'shareAsync',
         value: function () {
             var _ref2 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee2(data) {
-                var _this2 = this;
-
                 return _regenerator2.default.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
-                                _context2.prev = 0;
-                                _context2.next = 3;
-                                return navigator.share(data);
+                                if (window.isMobile) {
+                                    _context2.next = 3;
+                                    break;
+                                }
+
+                                this.copyToClipboard2(data);
+                                return _context2.abrupt('return');
 
                             case 3:
-                                _context2.next = 12;
+                                _context2.prev = 3;
+                                _context2.next = 6;
+                                return navigator.share(data);
+
+                            case 6:
+                                _context2.next = 11;
                                 break;
 
-                            case 5:
-                                _context2.prev = 5;
-                                _context2.t0 = _context2['catch'](0);
+                            case 8:
+                                _context2.prev = 8;
+                                _context2.t0 = _context2['catch'](3);
 
+                                this.copyToClipboard2(data);
+
+                            case 11:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this, [[3, 8]]);
+            }));
+
+            function shareAsync(_x2) {
+                return _ref2.apply(this, arguments);
+            }
+
+            return shareAsync;
+        }()
+    }, {
+        key: 'copyToClipboard2',
+        value: function () {
+            var _ref3 = (0, _asyncToGenerator3.default)( /*#__PURE__*/_regenerator2.default.mark(function _callee3(data) {
+                var _this2 = this;
+
+                return _regenerator2.default.wrap(function _callee3$(_context3) {
+                    while (1) {
+                        switch (_context3.prev = _context3.next) {
+                            case 0:
                                 this.copyToClipboard(data.text);
 
                                 this.clipboardTextBox.alpha = 0;
@@ -83010,19 +83043,19 @@ var WordMakerSystem = function () {
                                     }
                                 });
 
-                            case 12:
+                            case 5:
                             case 'end':
-                                return _context2.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee2, this, [[0, 5]]);
+                }, _callee3, this);
             }));
 
-            function shareAsync(_x2) {
-                return _ref2.apply(this, arguments);
+            function copyToClipboard2(_x3) {
+                return _ref3.apply(this, arguments);
             }
 
-            return shareAsync;
+            return copyToClipboard2;
         }()
     }, {
         key: 'setRow',
@@ -83486,7 +83519,8 @@ var WordMakerSystem = function () {
             var won = true;
             for (var index = 0; index < this.gameplayData.lists.length; index++) {
                 var element = this.gameplayData.lists[index];
-                if (element.wordPoints <= 0) {
+                console.log(element);
+                if (!element.wordPoints || !element.wordFound) {
                     won = false;
                 }
             }
@@ -85831,12 +85865,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 var assets = [{
-	"id": "fiveLetters_",
-	"url": "assets/json\\fiveLetters_.json"
-}, {
-	"id": "fourLetters_",
-	"url": "assets/json\\fourLetters_.json"
-}, {
 	"id": "scrabble",
 	"url": "assets/json\\scrabble.json"
 }, {
@@ -85845,6 +85873,12 @@ var assets = [{
 }, {
 	"id": "threeLetters_",
 	"url": "assets/json\\threeLetters_.json"
+}, {
+	"id": "fiveLetters_",
+	"url": "assets/json\\fiveLetters_.json"
+}, {
+	"id": "fourLetters_",
+	"url": "assets/json\\fourLetters_.json"
 }, {
 	"id": "worduoConfig",
 	"url": "assets/json\\worduoConfig.json"
@@ -86498,7 +86532,7 @@ var vertex="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nun
 /* 396 */
 /***/ (function(module, exports) {
 
-module.exports = {"default":["image/pattern/pattern.json","image/particles/particles.json","image/ui/ui.json"]}
+module.exports = {"default":["image/particles/particles.json","image/pattern/pattern.json","image/ui/ui.json"]}
 
 /***/ })
 /******/ ]);
