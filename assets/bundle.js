@@ -74963,7 +74963,7 @@ var EndGamePopUp = function (_PIXI$Container) {
                 _this.shareButton.addChild(_this.clipboard);
                 _this.clipboard.visible = false;
 
-                _this.statsButton = new _NextRandom2.default(300, 50, 0xBD8AF2);
+                _this.statsButton = new _NextRandom2.default(300, 50, 0xF05832);
                 _this.buttonsContainer.addChild(_this.statsButton);
                 _this.statsButton.updateText("check previus days");
                 _this.statsButton.y = 70;
