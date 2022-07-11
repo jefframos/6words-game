@@ -83199,7 +83199,9 @@ var WordMakerSystem = function () {
             // textToShare += 'Total ' + this.currentPoints + '\n'
             // textToShare += 'Play at www.6words.co.uk'
             var textToShare = '6Words for 📆' + this.dailyBox.getLabel() + '\n';
-            ///textToShare += 'Play at www.6words.co.uk\n'
+            if (!window.isMobile) {
+                textToShare += 'Play at www.6words.co.uk\n';
+            }
             textToShare += '' + squares[0] + '\n';
             textToShare += '' + squares[1] + '\n';
             textToShare += '' + squares[2] + '\n';
@@ -86749,7 +86751,7 @@ var vertex="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nun
 /* 396 */
 /***/ (function(module, exports) {
 
-module.exports = {"default":["image/pattern/pattern.json","image/particles/particles.json","image/ui/ui.json"]}
+module.exports = {"default":["image/particles/particles.json","image/pattern/pattern.json","image/ui/ui.json"]}
 
 /***/ })
 /******/ ]);
