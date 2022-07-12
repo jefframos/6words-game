@@ -1890,7 +1890,7 @@ var _pixi = __webpack_require__(0);
 
 var PIXI = _interopRequireWildcard(_pixi);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -11646,45 +11646,6 @@ var substr = 'ab'.substr(-1) === 'b'
 /* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(25);
-module.exports = function (it) {
-  if (!isObject(it)) throw TypeError(it + ' is not an object!');
-  return it;
-};
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.default = {
-	width: 720 * 0.9,
-	height: 1280 * 0.8,
-	webgl: true,
-	effectsLayer: null,
-	colors: {
-		background: 0x000000
-	},
-	rendererOptions: {
-		//pixi rendererOptions
-		resolution: 2, //window.devicePixelRatio,
-		antialias: true,
-		backgroundColor: 0x000000
-	},
-	levels: []
-};
-module.exports = exports["default"];
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 
@@ -11894,10 +11855,49 @@ exports.default = UIList;
 module.exports = exports['default'];
 
 /***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(25);
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	width: 720 * 0.9,
+	height: 1280 * 0.8,
+	webgl: true,
+	effectsLayer: null,
+	colors: {
+		background: 0x000000
+	},
+	rendererOptions: {
+		//pixi rendererOptions
+		resolution: 2, //window.devicePixelRatio,
+		antialias: true,
+		backgroundColor: 0x000000
+	},
+	levels: []
+};
+module.exports = exports["default"];
+
+/***/ }),
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 var IE8_DOM_DEFINE = __webpack_require__(99);
 var toPrimitive = __webpack_require__(61);
 var dP = Object.defineProperty;
@@ -20976,7 +20976,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
@@ -21123,7 +21123,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
@@ -21278,7 +21278,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
@@ -27470,7 +27470,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 var dPs = __webpack_require__(288);
 var enumBugKeys = __webpack_require__(86);
 var IE_PROTO = __webpack_require__(84)('IE_PROTO');
@@ -38514,7 +38514,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
@@ -38658,7 +38658,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
@@ -46964,7 +46964,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
@@ -47766,7 +47766,7 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 var aFunction = __webpack_require__(48);
 var SPECIES = __webpack_require__(15)('species');
 module.exports = function (O, D) {
@@ -47883,7 +47883,7 @@ module.exports = function (exec) {
 /* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 var isObject = __webpack_require__(25);
 var newPromiseCapability = __webpack_require__(96);
 
@@ -69701,7 +69701,7 @@ module.exports = function (Constructor, NAME, next) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(24);
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 var getKeys = __webpack_require__(83);
 
 module.exports = __webpack_require__(26) ? Object.defineProperties : function defineProperties(O, Properties) {
@@ -69865,7 +69865,7 @@ var wksExt = __webpack_require__(87);
 var wksDefine = __webpack_require__(88);
 var enumKeys = __webpack_require__(299);
 var isArray = __webpack_require__(300);
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 var isObject = __webpack_require__(25);
 var toIObject = __webpack_require__(32);
 var toPrimitive = __webpack_require__(61);
@@ -70749,7 +70749,7 @@ $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(315).set });
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
 var isObject = __webpack_require__(25);
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 var check = function (O, proto) {
   anObject(O);
   if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
@@ -73883,7 +73883,7 @@ var _WorduoScreen = __webpack_require__(326);
 
 var _WorduoScreen2 = _interopRequireDefault(_WorduoScreen);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -74082,7 +74082,7 @@ var _pixi = __webpack_require__(0);
 
 var PIXI = _interopRequireWildcard(_pixi);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -74580,7 +74580,8 @@ var WorduoScreen = function (_Screen) {
 
                 // setTimeout(() => {
 
-                //     this.openCustomGamePopUp()
+                //     this.openWinPopUp()
+                //     //this.openCustomGamePopUp()
                 // }, 100);
                 return _this;
         }
@@ -74848,7 +74849,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -74859,6 +74860,10 @@ var _utils2 = _interopRequireDefault(_utils);
 var _TextBox = __webpack_require__(95);
 
 var _TextBox2 = _interopRequireDefault(_TextBox);
+
+var _UIList = __webpack_require__(21);
+
+var _UIList2 = _interopRequireDefault(_UIList);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -74887,7 +74892,7 @@ var EndGamePopUp = function (_PIXI$Container) {
                 _this.container = new PIXI.Container();
 
                 _this.w = _config2.default.width * 0.85;
-                _this.h = 600;
+                _this.h = 570;
 
                 _this.background = new PIXI.Graphics().beginFill(0).drawRect(-_config2.default.width * 8, -_config2.default.height * 8, _config2.default.width * 16, _config2.default.height * 16);
                 _this.container.addChild(_this.background);
@@ -74973,19 +74978,23 @@ var EndGamePopUp = function (_PIXI$Container) {
                 _this.popUp.addChild(_this.pointsBox);
                 _this.pointsBox.y = 65;
 
+                _this.buttonsContainer = new PIXI.Container();
                 _this.loadData = COOKIE_MANAGER.getStats();
                 _this.shareOnly = new PIXI.Text('you can only share daily challenges!', LABELS.LABEL2);
                 _this.shareOnly.style.fontSize = 14;
                 _this.shareOnly.style.strokeThickness = 4;
-                _utils2.default.centerObject(_this.shareOnly, _this.popUp);
-                _this.popUp.addChild(_this.shareOnly);
+                _this.buttonsContainer.addChild(_this.shareOnly);
 
-                _this.shareOnly.y = 200;
+                _this.shareOnly.x = 40;
+                _this.shareOnly.y = -60;
                 _this.shareOnly.visible = false;
 
-                _this.buttonsContainer = new PIXI.Container();
-                _this.shareButton = new _NextRandom2.default(300, 50, 0x1F9CEA);
+                _this.shareButton = new _NextRandom2.default(350, 70, 0x1F9CEA);
                 _this.buttonsContainer.addChild(_this.shareButton);
+
+                _this.shareButton.pivot.x = _this.shareButton.width / 2;
+                _this.shareButton.pivot.y = _this.shareButton.height / 2;
+                _this.shareButton.x = _this.shareButton.width / 2 + 60;
                 _this.shareButton.updateText("SHARE");
                 _this.shareButton.onClick.add(function () {
                         _this.onShare.dispatch();
@@ -75002,20 +75011,43 @@ var EndGamePopUp = function (_PIXI$Container) {
                         }
                 });
 
-                _this.clipboard = new _TextBox2.default(300, 50);
+                _this.clipboard = new _TextBox2.default(350, 70);
                 _this.shareButton.addChild(_this.clipboard);
                 _this.clipboard.visible = false;
 
-                _this.statsButton = new _NextRandom2.default(300, 50, 0xF05832);
+                _this.statsButton = new _UIButton2.default(0xF189BB, 'calendar', 0, 62, 62);
                 _this.buttonsContainer.addChild(_this.statsButton);
-                _this.statsButton.updateText("check previus days");
-                _this.statsButton.y = 70;
+                _this.statsButton.updateIconScale(0.6);
+                //this.statsButton.setIconColor(0xFFFFFF)
                 _this.statsButton.onClick.add(function () {
                         _this.onCheckData.dispatch();
                 });
 
+                var week = new PIXI.Text('scores', LABELS.LABEL2);
+                _this.buttonsContainer.addChild(week);
+                week.style.fontSize = 16;
+                //week.style.fill = colors[index % colors.length]
+                week.style.strokeThickness = 8;
+                //week.pivot.y = week.height / 2
+                // week.rotation = Math.PI / 2
+                week.x = -45;
+                week.y = 40;
+
+                _this.buttonsList = new _UIList2.default();
+                _this.buttonsList.w = 300;
+                _this.buttonsList.h = 250;
+
+                _this.buttonsContainer.addChild(_this.buttonsList);
+                // this.statsButton = new NextRandom(300, 50, 0xF05832);
+                // this.buttonsContainer.addChild(this.statsButton)
+                // this.statsButton.updateText("check previus days")
+                // this.statsButton.y = 70
+                // this.statsButton.onClick.add(() => {
+                //     this.onCheckData.dispatch()
+                // })
+
                 _this.newGame = new _NextRandom2.default(300);
-                _this.buttonsContainer.addChild(_this.newGame);
+                _this.buttonsList.addElement(_this.newGame);
                 _this.newGame.updateText("new game");
                 _this.newGame.y = 140;
                 _this.newGame.onClick.add(function () {
@@ -75023,7 +75055,7 @@ var EndGamePopUp = function (_PIXI$Container) {
                 });
 
                 _this.improveYourScore = new _NextRandom2.default(300, 50, 0x28F859);
-                _this.buttonsContainer.addChild(_this.improveYourScore);
+                _this.buttonsList.addElement(_this.improveYourScore);
                 _this.improveYourScore.updateText("reset challenge");
                 _this.improveYourScore.y = 210;
                 _this.improveYourScore.onClick.add(function () {
@@ -75031,17 +75063,32 @@ var EndGamePopUp = function (_PIXI$Container) {
                 });
 
                 _this.continueButton = new _NextRandom2.default(300, 50, 0x52CDDA);
-                _this.buttonsContainer.addChild(_this.continueButton);
+                _this.buttonsList.addElement(_this.continueButton);
                 _this.continueButton.updateText("improve your score");
                 _this.continueButton.y = 280;
                 _this.continueButton.onClick.add(function () {
                         _this.confirm();
                 });
 
+                var madeBy = new PIXI.Text('made by @jeffaramos', LABELS.LABEL2);
+                _this.buttonsList.addElement(madeBy);
+                madeBy.style.fontSize = 16;
+                madeBy.style.fill = 0;
+                madeBy.style.strokeThickness = 0;
+                //madeBy.pivot.y = madeBy.height / 2
+                // madeBy.rotation = Math.PI / 2
+                madeBy.x = -45;
+                madeBy.y = 40;
+
                 _utils2.default.centerObject(_this.buttonsContainer, _this.popUp);
                 _this.popUp.addChild(_this.buttonsContainer);
 
-                _this.buttonsContainer.y = 220;
+                _this.buttonsContainer.x = 90;
+                _this.buttonsContainer.y = 250;
+
+                _this.buttonsList.x = 80;
+                _this.buttonsList.y = 45;
+                _this.buttonsList.updateVerticalList();
                 // this.containerStreak = new PIXI.Container();
 
                 //console.log(this.loadData)
@@ -80671,7 +80718,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
@@ -80717,7 +80764,7 @@ var HelpMenu = function (_PIXI$Container) {
         _this.backShape.x = 4;
         _this.backShape.y = 4;
 
-        _this.helpDescription = new PIXI.Text("Everyday a new set of Letters.\n\n There always will be a 6 letter Word\n\n if you can't find one, you can reveal one on the top right menu but you don't make points for that word" + "\n\nmade by Jeff Ramos", LABELS.LABEL1);
+        _this.helpDescription = new PIXI.Text("Everyday a new set of Letters.\n\n There always will be a 6 letter Word\n\n if you can't find one, you can reveal one on the top right menu but you don't make points for that word\n\nYou can play random puzzles at any time" + "\n\nmade by Jeff Ramos", LABELS.LABEL1);
         _this.helpDescription.style.fontSize = 16;
         _this.helpDescription.style.fill = 0;
         // this.helpDescription.style.stroke = 0
@@ -80858,7 +80905,7 @@ var _signals = __webpack_require__(13);
 
 var _signals2 = _interopRequireDefault(_signals);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -82165,7 +82212,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -82278,7 +82325,7 @@ var StatsPopUp = function (_PIXI$Container) {
         _this.timerBox = new _TimerBox2.default();
         _utils2.default.centerObject(_this.timerBox, _this.popUp);
 
-        _this.timerBox.y = 80;
+        _this.timerBox.y = 70;
         _this.popUp.addChild(_this.timerBox);
 
         _this.loadData = COOKIE_MANAGER.getStats();
@@ -82326,7 +82373,7 @@ var StatsPopUp = function (_PIXI$Container) {
             dayLabel.pivot.y = -dayLabel.height / 2 - 6;
             dayLabel.rotation = Math.PI * -0.5;
             dayLabel.x = letterSlot.x;
-            dayLabel.y = -25;
+            dayLabel.y = -10;
 
             var highScore = new PIXI.Text(element.highscore ? element.highscore : '?', LABELS.LABEL2);
             highScore.style.fontSize = 16;
@@ -82358,7 +82405,7 @@ var StatsPopUp = function (_PIXI$Container) {
         }
 
         _utils2.default.centerObject(_this.containerStreak, _this.popUp);
-        _this.containerStreak.y = 260;
+        _this.containerStreak.y = 245;
         _this.popUp.addChild(_this.containerStreak);
 
         _this.today = new Date();
@@ -82603,7 +82650,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
@@ -82839,11 +82886,11 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _UIList = __webpack_require__(23);
+var _UIList = __webpack_require__(21);
 
 var _UIList2 = _interopRequireDefault(_UIList);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -83569,8 +83616,17 @@ var WordMakerSystem = function () {
 
             this.addOnData('currentScore', this.currentPoints);
 
-            if (this.getRightData('highscore') < this.currentPoints) {
-                this.addOnData('highscore', this.currentPoints);
+            console.log(this.getRightData('highscore'));
+
+            if (this.isDaily) {
+                if (this.loadStats.highscore < this.currentPoints) {
+                    this.loadStats.highscore = this.currentPoints;
+                }
+            } else {
+
+                if (this.getRightData('highscore') < this.currentPoints) {
+                    this.addOnData('highscore', this.currentPoints);
+                }
             }
             if (this.gameplayData.lists[this.gameplayData.lists.length - 1].checker.revealed) {
 
@@ -85106,7 +85162,7 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 var ctx = __webpack_require__(35);
 var call = __webpack_require__(348);
 var isArrayIter = __webpack_require__(349);
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 var toLength = __webpack_require__(154);
 var getIterFn = __webpack_require__(350);
 var BREAK = {};
@@ -85135,7 +85191,7 @@ exports.RETURN = RETURN;
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
-var anObject = __webpack_require__(21);
+var anObject = __webpack_require__(22);
 module.exports = function (iterator, fn, value, entries) {
   try {
     return entries ? fn(anObject(value)[0], value[1]) : fn(value);
@@ -85720,7 +85776,7 @@ var _UIButton = __webpack_require__(17);
 
 var _UIButton2 = _interopRequireDefault(_UIButton);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -86075,7 +86131,7 @@ var _asyncToGenerator2 = __webpack_require__(169);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _config = __webpack_require__(22);
+var _config = __webpack_require__(23);
 
 var _config2 = _interopRequireDefault(_config);
 
