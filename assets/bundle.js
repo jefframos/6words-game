@@ -83267,7 +83267,8 @@ var WordMakerSystem = function () {
                 }
                 squares.push(sq);
             }
-            var textToShare = '6Words for 📆' + this.dailyBox.getLabel() + '\n';
+            //📆
+            var textToShare = '6Words for ' + this.dailyBox.getLabel() + '\n';
             if (!window.isMobile) {
                 textToShare += 'Play at www.6words.co.uk\n';
             }
@@ -83277,7 +83278,7 @@ var WordMakerSystem = function () {
             textToShare += '' + squares[3] + '\n';
             textToShare += '' + squares[4] + '\n';
             textToShare += '' + squares[5] + '\n';
-            textToShare += 'Total ' + this.currentPoints + '\n';
+            textToShare += 'Total ' + this.currentPoints + '\n#6words';
 
             var data = {
                 url: 'http://www.6words.co.uk',
@@ -84060,8 +84061,8 @@ var WordMakerSystem = function () {
             this.finishButton.visible = this.isWinState;
             this.eraseAllButton.visible = this.isWinState;
 
-            this.shareButton.x = 60 / 2 + 20;
-            this.shareButton.y = this.markerList.y + 30;
+            this.shareButton.x = 60 / 2 + 12;
+            this.shareButton.y = this.markerList.y + 33;
             // this.topHUDButtons['reveal'].x = -210
         }
     }]);
@@ -86542,11 +86543,14 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 var assets = [{
+	"id": "fourLetters_",
+	"url": "assets/json\\fourLetters_.json"
+}, {
 	"id": "fiveLetters_",
 	"url": "assets/json\\fiveLetters_.json"
 }, {
-	"id": "fourLetters_",
-	"url": "assets/json\\fourLetters_.json"
+	"id": "worduoConfig",
+	"url": "assets/json\\worduoConfig.json"
 }, {
 	"id": "scrabble",
 	"url": "assets/json\\scrabble.json"
@@ -86556,9 +86560,6 @@ var assets = [{
 }, {
 	"id": "threeLetters_",
 	"url": "assets/json\\threeLetters_.json"
-}, {
-	"id": "worduoConfig",
-	"url": "assets/json\\worduoConfig.json"
 }];
 
 exports.default = assets;
