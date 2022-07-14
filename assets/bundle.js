@@ -83072,10 +83072,15 @@ var WordMakerSystem = function () {
         var shouldBuildSave = false;
         if (this.loadStats.day.length == 0) {
             shouldBuildSave = true;
+            this.loadStats.highscore = 0;
+            this.loadStats.bestWord = '';
             this.loadStats.day.push(this.date.getDate());
             this.loadStats.day.push(this.date.getMonth());
         } else if (this.loadStats.day[0] != this.date.getDate() || this.loadStats.day[1] != this.date.getMonth()) {
             shouldBuildSave = true;
+            //console.log(this.loadStats.day[0] ,this.date.getDate() , this.loadStats.day[1] , this.date.getMonth())
+            this.loadStats.highscore = 0;
+            this.loadStats.bestWord = '';
             this.loadStats.day[0] = this.date.getDate();
             this.loadStats.day[1] = this.date.getMonth();
         }
@@ -83138,7 +83143,8 @@ var WordMakerSystem = function () {
             _loop(key);
         }
 
-        COOKIE_MANAGER.saveDailyStats(this.loadStats, this.isDaily);
+        //console.log(this.loadStats, this.isDaily)
+        COOKIE_MANAGER.saveDailyStats(this.loadStats, shouldBuildSave);
         this.markerList.updateVerticalList();
         this.pointsList.updateVerticalList();
         this.wordFormationsList.updateVerticalList();
@@ -83208,7 +83214,7 @@ var WordMakerSystem = function () {
     (0, _createClass3.default)(WordMakerSystem, [{
         key: 'inputHandle',
         value: function inputHandle(e) {
-            console.log(e.keyCode);
+            //console.log(e.keyCode)
             if (e.keyCode === 27) {
                 this.erase();
                 this.checkWordInRow(this.gameplayData.currentVerticalPosition);
@@ -86543,15 +86549,6 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 var assets = [{
-	"id": "fourLetters_",
-	"url": "assets/json\\fourLetters_.json"
-}, {
-	"id": "fiveLetters_",
-	"url": "assets/json\\fiveLetters_.json"
-}, {
-	"id": "worduoConfig",
-	"url": "assets/json\\worduoConfig.json"
-}, {
 	"id": "scrabble",
 	"url": "assets/json\\scrabble.json"
 }, {
@@ -86560,6 +86557,15 @@ var assets = [{
 }, {
 	"id": "threeLetters_",
 	"url": "assets/json\\threeLetters_.json"
+}, {
+	"id": "fourLetters_",
+	"url": "assets/json\\fourLetters_.json"
+}, {
+	"id": "worduoConfig",
+	"url": "assets/json\\worduoConfig.json"
+}, {
+	"id": "fiveLetters_",
+	"url": "assets/json\\fiveLetters_.json"
 }];
 
 exports.default = assets;
@@ -87210,7 +87216,7 @@ var vertex="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nun
 /* 397 */
 /***/ (function(module, exports) {
 
-module.exports = {"default":["image/pattern/pattern.json","image/particles/particles.json","image/ui/ui.json"]}
+module.exports = {"default":["image/particles/particles.json","image/pattern/pattern.json","image/ui/ui.json"]}
 
 /***/ })
 /******/ ]);
