@@ -83092,7 +83092,7 @@ var WordMakerSystem = function () {
         //this.dailyBox.y = this.topWrapper.height - 30
 
         this.actionButtons = new _UIList2.default();
-        this.actionButtons.w = this.bottomWrapper.width * 0.6;
+        this.actionButtons.w = this.bottomWrapper.width * 0.8;
         this.actionButtons.h = 50;
         this.bottomContainer.addChild(this.actionButtons);
 
@@ -83101,6 +83101,7 @@ var WordMakerSystem = function () {
         this.registerButton(this.actionButtons, 'key-arrow-right', 'arrowRight');
         this.registerButton(this.actionButtons, 'key-arrow-down', 'arrowDown');
         this.registerButton(this.actionButtons, 'key-arrowup', 'arrowUp');
+        this.registerButton(this.actionButtons, 'icon_confirm', 'checkCurrentRowWord');
         //this.registerButton(this.actionButtons, 'key-arrowup', 'arrowUp', 'finish')
         this.finishButton = new _NextRandom2.default(120, 60, 0x28F859);
         this.bottomContainer.addChild(this.finishButton);
@@ -83328,9 +83329,14 @@ var WordMakerSystem = function () {
     }
 
     (0, _createClass3.default)(WordMakerSystem, [{
+        key: 'checkCurrentRowWord',
+        value: function checkCurrentRowWord() {
+            this.checkWordInRow(this.gameplayData.currentVerticalPosition);
+        }
+    }, {
         key: 'inputHandle',
         value: function inputHandle(e) {
-            //console.log(e.keyCode)
+            console.log(e.keyCode);
             if (e.keyCode === 27) {
                 this.erase();
                 this.checkWordInRow(this.gameplayData.currentVerticalPosition);
@@ -83739,7 +83745,7 @@ var WordMakerSystem = function () {
 
             this.addOnData('currentScore', this.currentPoints);
 
-            console.log(this.getRightData('highscore'));
+            //console.log(this.getRightData('highscore'))
 
             if (this.isDaily) {
                 if (this.loadStats.highscore < this.currentPoints) {
@@ -87347,7 +87353,7 @@ var vertex="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nun
 /* 397 */
 /***/ (function(module, exports) {
 
-module.exports = {"default":["image/pattern/pattern.json","image/particles/particles.json","image/ui/ui.json"]}
+module.exports = {"default":["image/particles/particles.json","image/pattern/pattern.json","image/ui/ui.json"]}
 
 /***/ })
 /******/ ]);
