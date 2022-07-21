@@ -21142,12 +21142,14 @@ var PointBox = function (_PIXI$Container) {
                 var width = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 240;
                 var height = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 50;
                 var labelOffset = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+                var color = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 0xfbb7f9;
+                var label = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : 'Points: ';
                 (0, _classCallCheck3.default)(this, PointBox);
 
                 var _this = (0, _possibleConstructorReturn3.default)(this, (PointBox.__proto__ || (0, _getPrototypeOf2.default)(PointBox)).call(this));
 
                 _this.w = width;
-                _this.color = 0xfbb7f9;
+                _this.color = color;
                 _this.border = new PIXI.mesh.NineSlicePlane(PIXI.Texture.fromFrame('button-1w'), 15, 15, 15, 15);
                 _this.border.width = width;
                 _this.border.height = height;
@@ -21163,8 +21165,9 @@ var PointBox = function (_PIXI$Container) {
                 _this.addChild(_this.backShape);
                 _this.backShape.x = 4;
                 _this.backShape.y = 4;
-
-                _this.pointsLabelStatic2 = new PIXI.Text('Points: ', { font: '24px', fill: 0, align: 'right', fontWeight: '300', fontFamily: MAIN_FONT });
+                _this.container = new PIXI.Container();
+                _this.addChild(_this.container);
+                _this.pointsLabelStatic2 = new PIXI.Text(label, { font: '24px', fill: 0, align: 'right', fontWeight: '300', fontFamily: MAIN_FONT });
                 _this.pointsLabelStatic2.style.fill = 0xFFFFFF;
                 _this.pointsLabel2 = new PIXI.Text('', LABELS.LABEL2);
                 _this.pointsLabel2.style.fontSize = 28;
@@ -21172,18 +21175,18 @@ var PointBox = function (_PIXI$Container) {
                 _this.pointsLabel2.style.stroke = 0xFFFFFF;
                 _this.pointsLabel2.style.strokeThickness = 6;
 
-                _this.addChild(_this.pointsLabelStatic2);
-                _this.addChild(_this.pointsLabel2);
+                _this.container.addChild(_this.pointsLabelStatic2);
+                _this.container.addChild(_this.pointsLabel2);
 
-                _this.pointsLabelStatic = new PIXI.Text('Points: ', { font: '24px', fill: 0, align: 'right', fontWeight: '300', fontFamily: MAIN_FONT });
+                _this.pointsLabelStatic = new PIXI.Text(label, { font: '24px', fill: 0, align: 'right', fontWeight: '300', fontFamily: MAIN_FONT });
                 _utils2.default.centerObject(_this.pointsLabelStatic, _this);
-                _this.addChild(_this.pointsLabelStatic);
-                _this.pointsLabelStatic.x -= 20 - labelOffset;
+                _this.container.addChild(_this.pointsLabelStatic);
+                //this.pointsLabelStatic.x -= 20 - labelOffset
                 _this.pointsLabelStatic.y -= 2;
 
                 _this.pointsLabel = new PIXI.Text('', LABELS.LABEL2);
                 _this.pointsLabel.style.fontSize = 28;
-                _this.addChild(_this.pointsLabel);
+                _this.container.addChild(_this.pointsLabel);
 
                 _this.updateText(0);
                 return _this;
@@ -21195,12 +21198,19 @@ var PointBox = function (_PIXI$Container) {
                         this.backShape.tint = color;
                 }
         }, {
+                key: 'centerAllText',
+                value: function centerAllText() {
+                        this.container.x = this.border.width / 2 - this.container.width / 2;
+                        this.container.y = this.border.height / 2 - this.container.height / 2 - 6;
+                }
+        }, {
                 key: 'updateText',
                 value: function updateText(points, offset) {
                         var target = points;
 
                         this.pointsLabel.text = target;
 
+                        this.pointsLabelStatic.x = 0;
                         this.pointsLabel.x = this.pointsLabelStatic.x + this.pointsLabelStatic.width + 5;
                         this.pointsLabel.y = this.pointsLabelStatic.y - 6;
                         if (offset) {
@@ -21219,6 +21229,8 @@ var PointBox = function (_PIXI$Container) {
 
                         this.pointsLabelStatic2.y -= 2;
                         this.pointsLabel2.y -= 2;
+
+                        this.centerAllText();
                 }
         }]);
         return PointBox;
@@ -48082,6 +48094,8 @@ function configGame(evt) {
     game.stage.addChild(screenManager);
     // screenManager.addScreen(gameScreen);
     // screenManager.forceChange('GameScreen');
+
+
     game.start();
 
     window.addEventListener("focus", myFocusFunction, true);
@@ -73906,18 +73920,43 @@ var WorduoScreenManager = function (_ScreenManager) {
         _this.worduoScreen = new _WorduoScreen2.default('WorduoScreen');
         _this.addScreen(_this.worduoScreen);
 
-        _this.change('WorduoScreen');
-
         _this.backgroundContainer = new PIXI.Container();
         _this.addChild(_this.backgroundContainer);
         _this.setChildIndex(_this.backgroundContainer, 0);
 
+        // Rune.init({
+        //     resumeGame: (game.start),
+        //     pauseGame: ()=>{},
+        //     restartGame: ()=>{},
+        //     getScore: ()=>{}
+        //   })
+
+        // Rune.init({
+        //     resumeGame: this.startGame.bind(this),
+        //     pauseGame: () => { },
+        //     restartGame: () => { },
+        //     getScore: this.getScore.bind(this)
+        // })
+
         _this.timeScale = 1;
+
+        _this.startGame();
 
         return _this;
     }
 
     (0, _createClass3.default)(WorduoScreenManager, [{
+        key: 'getScore',
+        value: function getScore() {
+            return 20;
+        }
+    }, {
+        key: 'startGame',
+        value: function startGame() {
+            //alert()
+            this.change('WorduoScreen');
+        }
+    }, {
         key: 'showPopUp',
         value: function showPopUp(label) {
             var param = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
@@ -81356,6 +81395,79 @@ var ScrabbleSystem = function () {
             return lettersToReturn;
         }
     }, {
+        key: "findMaxPoints",
+        value: function findMaxPoints(letters) {
+            var _this2 = this;
+
+            //console.log(this.dictionary[0].wordsArray)
+            var match = true;
+
+            var allBests = [];
+
+            var _loop = function _loop(dictionaryIndex) {
+                var dictionaryList = _this2.dictionary[dictionaryIndex];
+                var tempList = [];
+                dictionaryList.wordsArray.forEach(function (element) {
+                    match = true;
+                    for (var _index2 = 0; _index2 < element.length; _index2++) {
+                        var letter = element[_index2];
+                        if (!letters.includes(letter)) {
+                            match = false;
+                            break;
+                        }
+                    }
+                    if (match) {
+                        var count = _this2.countWord(element);
+                        if (tempList.length > 0) {
+                            if (count >= tempList[0].points) {
+                                tempList.unshift({ word: element, points: count });
+                            } else {
+
+                                tempList.push({ word: element, points: count });
+                            }
+                        } else {
+                            tempList.push({ word: element, points: count });
+                        }
+                    }
+                });
+                tempList.sort(function (a, b) {
+                    return b.points - a.points;
+                });
+                allBests.push(tempList);
+            };
+
+            for (var dictionaryIndex = 0; dictionaryIndex < this.dictionary.length; dictionaryIndex++) {
+                _loop(dictionaryIndex);
+            }
+
+            var maxPoints = 0;
+            maxPoints += allBests[0][0].points;
+            maxPoints += allBests[1][0].points;
+            maxPoints += allBests[1][1].points;
+            maxPoints += allBests[2][0].points;
+            maxPoints += allBests[2][1].points;
+            maxPoints += allBests[3][0].points;
+
+            var bestWords = [];
+            var maxAverage = 0;
+
+            for (var index = 0; index < allBests.length; index++) {
+                var besties = [];
+                var average = 0;
+                for (var j = 0; j < 8; j++) {
+                    besties.push(allBests[index][j]);
+                    average += allBests[index][j].points;
+                }
+                maxAverage += Math.round(average / 8);
+
+                if (index > 0 && index < allBests.length - 1) {
+                    maxAverage += Math.round(average / 8);
+                }
+                bestWords.push(besties);
+            }
+            return { bestWords: bestWords, maxPoints: maxPoints, maxAverage: maxAverage };
+        }
+    }, {
         key: "getVowel",
         value: function getVowel() {
             var easy = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
@@ -81426,7 +81538,7 @@ var ScrabbleSystem = function () {
     }, {
         key: "findWords",
         value: function findWords(board, cardPos) {
-            var _this2 = this;
+            var _this3 = this;
 
             this.game = board.game;
             this.board = board;
@@ -81452,8 +81564,8 @@ var ScrabbleSystem = function () {
                         targets: [],
                         inverted: false
                     };
-                    for (var _index2 = 0; _index2 < element.positions.length; _index2++) {
-                        var positions = element.positions[_index2];
+                    for (var _index3 = 0; _index3 < element.positions.length; _index3++) {
+                        var positions = element.positions[_index3];
 
                         var card = board.cards[positions.i][positions.j];
                         var cardGlobal = card.position; //getGlobalPosition({ x: 0, y: 0 });
@@ -81461,31 +81573,31 @@ var ScrabbleSystem = function () {
                             x: card.x,
                             y: card.y //+ CARD.height
                         };
-                        var target = { x: CARD.width * _index2, y: -100 };
-                        var label = _this2.popLetterCard(card, card.letterData.key, 0.5 + _index2 * 0.2, target, window.textStyles.letterStandard);
+                        var target = { x: CARD.width * _index3, y: -100 };
+                        var label = _this3.popLetterCard(card, card.letterData.key, 0.5 + _index3 * 0.2, target, window.textStyles.letterStandard);
 
                         label.scale.set(0);
-                        _gsap2.default.to(label.scale, 0.5, { x: 1.2, y: 1.2, delay: 0.5 + _index2 * 0.2, ease: Back.easeOut });
+                        _gsap2.default.to(label.scale, 0.5, { x: 1.2, y: 1.2, delay: 0.5 + _index3 * 0.2, ease: Back.easeOut });
                         label.x = card.x + card.width * card.scale.x;
                         label.y = card.y + card.height * card.scale.x;
                         label.velocity = { x: 0, y: 0 };
                         label.targetVelocity = { x: 0, y: -0.3 };
                         label.angle = Math.random() * 360;
-                        label.startTimer = _index2 * 0.1 + 0.5;
+                        label.startTimer = _index3 * 0.1 + 0.5;
                         label.delay = Math.random() * 0.5 + 0.2;
                         wordLabel.labels.push(label);
                         wordLabel.targets.push({ x: hitOffset.x, y: hitOffset.y });
                         wordLabel.inverted = element.inverted;
                     }
-                    _this2.addNewWord(wordLabel);
+                    _this3.addNewWord(wordLabel);
                 });
             }, 100);
 
             console.log(wordsFound);
             setTimeout(function () {
                 wordsFound.forEach(function (element) {
-                    var _loop = function _loop(_index3) {
-                        var positions = element.positions[_index3];
+                    var _loop2 = function _loop2(_index4) {
+                        var positions = element.positions[_index4];
                         var card = board.cards[positions.i][positions.j];
                         var cardGlobal = card ? card.getGlobalPosition() : positions.originalGlobalCardPosition;
                         var hitOffset = {
@@ -81502,8 +81614,8 @@ var ScrabbleSystem = function () {
                         board.addTurnTime(1);
                     };
 
-                    for (var _index3 = 0; _index3 < element.positions.length; _index3++) {
-                        _loop(_index3);
+                    for (var _index4 = 0; _index4 < element.positions.length; _index4++) {
+                        _loop2(_index4);
                     }
                 });
             }, 400);
@@ -81597,7 +81709,7 @@ var ScrabbleSystem = function () {
     }, {
         key: "getPossibleWords",
         value: function getPossibleWords(lettersStamp, cardPos) {
-            var _this3 = this;
+            var _this4 = this;
 
             var vertical = "";
             var horizontal = "";
@@ -81625,13 +81737,13 @@ var ScrabbleSystem = function () {
 
             if (cardPos.i > 0) {
 
-                for (var _index4 = cardPos.i - 1; _index4 >= 0; _index4--) {
-                    var _letter = lettersStamp[_index4][cardPos.j];
-                    if (_letter == "" && _index4 < cardPos.i) {
+                for (var _index5 = cardPos.i - 1; _index5 >= 0; _index5--) {
+                    var _letter = lettersStamp[_index5][cardPos.j];
+                    if (_letter == "" && _index5 < cardPos.i) {
                         break;
                     } else if (_letter != "") {
                         horizontal += _letter;
-                        horizontalArrayPos.push({ i: _index4, j: cardPos.j });
+                        horizontalArrayPos.push({ i: _index5, j: cardPos.j });
                     } else {
                         break;
                     }
@@ -81639,42 +81751,42 @@ var ScrabbleSystem = function () {
             }
             horizontal = this.reverseString(horizontal);
             horizontalArrayPos = this.reverseArray(horizontalArrayPos);
-            for (var _index5 = cardPos.i; _index5 < lettersStamp.length; _index5++) {
-                var _letter2 = lettersStamp[_index5][cardPos.j];
-                if (_letter2 == "" && _index5 < cardPos.i) {
+            for (var _index6 = cardPos.i; _index6 < lettersStamp.length; _index6++) {
+                var _letter2 = lettersStamp[_index6][cardPos.j];
+                if (_letter2 == "" && _index6 < cardPos.i) {
                     break;
                 } else if (_letter2 != "") {
                     horizontal += _letter2;
-                    horizontalArrayPos.push({ i: _index5, j: cardPos.j });
+                    horizontalArrayPos.push({ i: _index6, j: cardPos.j });
                 } else {
                     break;
                 }
             }
             var dg = 0;
-            for (var _index6 = cardPos.j; _index6 >= 0; _index6--) {
+            for (var _index7 = cardPos.j; _index7 >= 0; _index7--) {
                 var next = cardPos.i - dg;
                 if (lettersStamp.length > next && next >= 0) {
-                    var _letter3 = lettersStamp[next][_index6];
+                    var _letter3 = lettersStamp[next][_index7];
                     if (_letter3 == "") {
                         break;
                     } else {
-                        diagonalBL += lettersStamp[next][_index6];
-                        diagonalBLArrayPos.push({ i: next, j: _index6 });
+                        diagonalBL += lettersStamp[next][_index7];
+                        diagonalBLArrayPos.push({ i: next, j: _index7 });
 
                         dg++;
                     }
                 }
             }
             dg = 0;
-            for (var _index7 = cardPos.j; _index7 >= 0; _index7--) {
+            for (var _index8 = cardPos.j; _index8 >= 0; _index8--) {
                 var _next = cardPos.i + dg;
                 if (lettersStamp.length > _next && _next >= 0) {
-                    var _letter4 = lettersStamp[_next][_index7];
+                    var _letter4 = lettersStamp[_next][_index8];
                     if (_letter4 == "") {
                         break;
                     } else {
-                        diagonalBR += lettersStamp[_next][_index7];
-                        diagonalBRArrayPos.push({ i: _next, j: _index7 });
+                        diagonalBR += lettersStamp[_next][_index8];
+                        diagonalBRArrayPos.push({ i: _next, j: _index8 });
 
                         dg++;
                     }
@@ -81682,31 +81794,31 @@ var ScrabbleSystem = function () {
             }
 
             dg = 0;
-            for (var _index8 = cardPos.j; _index8 < lettersStamp[cardPos.i].length; _index8++) {
+            for (var _index9 = cardPos.j; _index9 < lettersStamp[cardPos.i].length; _index9++) {
                 var _next2 = cardPos.i - dg;
                 if (lettersStamp.length > _next2 && _next2 >= 0) {
-                    var _letter5 = lettersStamp[_next2][_index8];
+                    var _letter5 = lettersStamp[_next2][_index9];
                     if (_letter5 == "") {
                         break;
                     } else {
-                        diagonalTL += lettersStamp[_next2][_index8];
-                        diagonalTLArrayPos.push({ i: _next2, j: _index8 });
+                        diagonalTL += lettersStamp[_next2][_index9];
+                        diagonalTLArrayPos.push({ i: _next2, j: _index9 });
 
                         dg++;
                     }
                 }
             }
             dg = 0;
-            for (var _index9 = cardPos.j; _index9 < lettersStamp[cardPos.i].length; _index9++) {
+            for (var _index10 = cardPos.j; _index10 < lettersStamp[cardPos.i].length; _index10++) {
                 var _next3 = cardPos.i + dg;
 
                 if (lettersStamp.length > _next3 && _next3 >= 0) {
-                    var _letter6 = lettersStamp[_next3][_index9];
+                    var _letter6 = lettersStamp[_next3][_index10];
                     if (_letter6 == "") {
                         break;
                     } else {
-                        diagonalTR += lettersStamp[_next3][_index9];
-                        diagonalTRArrayPos.push({ i: _next3, j: _index9 });
+                        diagonalTR += lettersStamp[_next3][_index10];
+                        diagonalTRArrayPos.push({ i: _next3, j: _index10 });
 
                         dg++;
                     }
@@ -81825,13 +81937,13 @@ var ScrabbleSystem = function () {
             // let wordsFound = []
             allwords.forEach(function (word) {
                 var addedAlready = false;
-                for (var _index10 = 0; _index10 < word.positions.length; _index10++) {
-                    var element = word.positions[_index10];
-                    var _card = _this3.board.cards[element.i][element.j];
-                    word.positions[_index10].originalCardPosition = { x: _card.x, y: _card.y };
-                    word.positions[_index10].originalGlobalCardPosition = _card.getGlobalPosition({ x: 0, y: 0 });
-                    word.positions[_index10].originalCardPoints = _card.letterData.points;
-                    word.positions[_index10].originalCardKey = _card.letterData.key;
+                for (var _index11 = 0; _index11 < word.positions.length; _index11++) {
+                    var element = word.positions[_index11];
+                    var _card = _this4.board.cards[element.i][element.j];
+                    word.positions[_index11].originalCardPosition = { x: _card.x, y: _card.y };
+                    word.positions[_index11].originalGlobalCardPosition = _card.getGlobalPosition({ x: 0, y: 0 });
+                    word.positions[_index11].originalCardPoints = _card.letterData.points;
+                    word.positions[_index11].originalCardKey = _card.letterData.key;
                     if (!addedAlready && element.i == cardPos.i && element.j == cardPos.j) {
                         wordsFound.push(word);
                         addedAlready = true;
@@ -81885,13 +81997,13 @@ var ScrabbleSystem = function () {
     }, {
         key: "countWord",
         value: function countWord(word) {
-            var _this4 = this;
+            var _this5 = this;
 
             var count = 0;
 
-            var _loop2 = function _loop2(index) {
+            var _loop3 = function _loop3(index) {
                 var letter = word[index];
-                _this4.letters.forEach(function (element) {
+                _this5.letters.forEach(function (element) {
                     if (element.key == letter) {
                         count += element.points;
                     }
@@ -81899,7 +82011,7 @@ var ScrabbleSystem = function () {
             };
 
             for (var index = 0; index < word.length; index++) {
-                _loop2(index);
+                _loop3(index);
             }
             return count;
         }
@@ -81922,11 +82034,11 @@ var ScrabbleSystem = function () {
     }, {
         key: "convertToData",
         value: function convertToData(array) {
-            var _this5 = this;
+            var _this6 = this;
 
             var converted = [];
             array.forEach(function (element) {
-                converted.push(_this5.fetchLetterData(element));
+                converted.push(_this6.fetchLetterData(element));
             });
             return converted;
         }
@@ -82948,6 +83060,10 @@ var WordMakerSystem = function () {
 
         this.container.addChild(this.pointBox);
 
+        this.maxPointsBox = new _PointBox2.default(240, 50, 0, 0xf56363, 'Max: ');
+
+        this.container.addChild(this.maxPointsBox);
+
         this.dailyBox = new _DailyBox2.default(200, 50);
         this.dailyBox.updateText(window.months[this.date.getMonth()] + ' ' + this.date.getDate());
         this.container.addChild(this.dailyBox);
@@ -83855,7 +83971,19 @@ var WordMakerSystem = function () {
 
             letters = vowels.concat(letters).concat(wordLetters);
 
+            var allLetters = '';
+            letters.forEach(function (element) {
+                allLetters += element.key;
+            });
+
             _utils2.default.shuffle(letters, shouldUseSeed ? window.seedGen : null);
+
+            //console.log(allLetters)
+
+            var maxData = this.scrabbleSystem.findMaxPoints(allLetters);
+            console.log(maxData);
+            this.maxPointsBox.updateText(maxData.maxAverage + "/" + maxData.maxPoints);
+            this.maxPointsBox.centerAllText();
             if (letters[0].length > 3) {
                 letters[0] = '---';
             }
@@ -84038,7 +84166,10 @@ var WordMakerSystem = function () {
             this.alertWordText.y = this.wrapper.height - 28;
 
             this.pointBox.x = this.wrapper.width / 2 - this.pointBox.w / 2;
-            this.pointBox.y = this.topWrapper.y + 30; //+ this.topWrapper.height
+            this.pointBox.y = this.topWrapper.y + 10; //+ this.topWrapper.height
+
+            this.maxPointsBox.x = this.wrapper.width / 2 - this.maxPointsBox.w / 2;
+            this.maxPointsBox.y = this.pointBox.y + 55;
 
             this.dailyBox.y = this.pointBox.y;
 
@@ -86549,6 +86680,12 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 var assets = [{
+	"id": "fiveLetters_",
+	"url": "assets/json\\fiveLetters_.json"
+}, {
+	"id": "fourLetters_",
+	"url": "assets/json\\fourLetters_.json"
+}, {
 	"id": "scrabble",
 	"url": "assets/json\\scrabble.json"
 }, {
@@ -86558,14 +86695,8 @@ var assets = [{
 	"id": "threeLetters_",
 	"url": "assets/json\\threeLetters_.json"
 }, {
-	"id": "fourLetters_",
-	"url": "assets/json\\fourLetters_.json"
-}, {
 	"id": "worduoConfig",
 	"url": "assets/json\\worduoConfig.json"
-}, {
-	"id": "fiveLetters_",
-	"url": "assets/json\\fiveLetters_.json"
 }];
 
 exports.default = assets;
@@ -87216,7 +87347,7 @@ var vertex="attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nun
 /* 397 */
 /***/ (function(module, exports) {
 
-module.exports = {"default":["image/particles/particles.json","image/pattern/pattern.json","image/ui/ui.json"]}
+module.exports = {"default":["image/pattern/pattern.json","image/particles/particles.json","image/ui/ui.json"]}
 
 /***/ })
 /******/ ]);
